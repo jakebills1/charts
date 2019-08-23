@@ -10,7 +10,7 @@ A searchable management system for pdf's of charts and leadsheets. Documents sho
 *** Documents would be stored via a cloudinary upload. Each document would belong to the user model and have the following data points: url, name, artist, group( deb, mb, thtrio,,,), genre, &c
 * steps
 ** TODO write backend api in Rails
-*** TODO user model has many documents
+*** TODO user model has many charts
 *** TODO chart model (name, artist, group, genre) belonging to user
 *** TODO chart model to have search method using sql. 
 *** TODO playlist model that has many charts
@@ -21,6 +21,7 @@ A searchable management system for pdf's of charts and leadsheets. Documents sho
 **** TODO index
 *** TODO pdf viewer
 *** TODO playlists
+*
 * optional learning goals
 - [ ] write frontend in typescript
 - [ ] write search functionality using SQL
