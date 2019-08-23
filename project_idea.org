@@ -1,0 +1,27 @@
+#+TITLE: chart management system project idea
+#+OPTIONS: toc:nil
+#+begin_abstract
+A searchable management system for pdf's of charts and leadsheets. Documents should be found by title, artist, genre, or band associated with.
+#+end_abstract
+* introduction
+** This would be an organizational tool for musicians to manage their many leadsheets and charts that they produce. It should eventually include the ability to make a playlist.
+* implementation
+** This could be a rails web app, with a react front end. It would consist of a log in screen, a dashboard for your charts, a search bar, a drag and drop upload space...
+*** Documents would be stored via a cloudinary upload. Each document would belong to the user model and have the following data points: url, name, artist, group( deb, mb, thtrio,,,), genre, &c
+* steps
+** TODO write backend api in Rails
+*** TODO user model has many documents
+*** TODO chart model (name, artist, group, genre) belonging to user
+*** TODO chart model to have search method using sql. 
+*** TODO playlist model that has many charts
+** TODO write frontend in React
+*** TODO login page
+*** TODO dashboard
+**** TODO search tool
+**** TODO index
+*** TODO pdf viewer
+*** TODO playlists
+* optional learning goals
+- [ ] write frontend in typescript
+- [ ] write search functionality using SQL
+- [ ] 
