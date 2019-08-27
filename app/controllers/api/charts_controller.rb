@@ -1,6 +1,6 @@
 class Api::ChartsController < ApplicationController
   before_action :set_chart, only: [:update, :destroy]
-  def index
+  def index 
     render json: current_user.charts.all
   end
 

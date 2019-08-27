@@ -32,7 +32,8 @@ A searchable management system for pdf's of charts and leadsheets. Documents sho
 ** TODO can make new playlist
 ** TODO can add chart to playlist
 ** TODO can view pdfs
+** TODO can search users charts by name, group, genre, artist
 * optional learning goals
 - [ ] write frontend in typescript
 - [ ] write search functionality using SQL
-- [ ] 
+- [ ] write frontend in hooks

@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes, { arrayOf, shape, string, number } from "prop-types";
+import { arrayOf, shape, string, number } from "prop-types";
 const Charts = ({ charts }) => {
   Charts.propTypes = {
     charts: arrayOf(
@@ -13,20 +13,33 @@ const Charts = ({ charts }) => {
       })
     )
   };
-  return (
-    <>
-      {charts.map(chart => {
-        return (
-          <div>
-            <p>
-              {chart.name}-{chart.artist}
-            </p>
-            <p>{chart.genre}</p>
-            <p>{chart.group}</p>
-          </div>
-        );
-      })}
-    </>
-  );
+  const indexOfCharts =
+    charts.length > 0 ? (
+      <>
+        <h3>Your Charts</h3>
+        {charts.map(chart => {
+          const url = chart.url;
+          return (
+            <div key={chart.id}>
+              <p>
+                {chart.name} - {chart.artist}
+              </p>
+              <p>{chart.genre}</p>
+              <p>{chart.group}</p>
+              <iframe
+                src={url}
+                style={{ display: "block", border: "0", overflow: "hidden" }}
+                title={chart.name}
+              ></iframe>
+            </div>
+          );
+        })}
+      </>
+    ) : (
+      <>
+        <h2>You have no charts currently uploaded</h2>
+      </>
+    );
+  return indexOfCharts;
 };
 export default Charts;
