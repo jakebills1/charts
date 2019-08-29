@@ -6,15 +6,17 @@ class Api::ChartsController < ApplicationController
 
   def create
     file = params[:file]
-    if file
+    name = params[:name]
+    artist = params[:artist]
+    genre = params[:genre]
+    group = params[:group]
+    if file 
       begin
         ext = File.extname(file.tempfile)
         cloud_image = Cloudinary::Uploader.upload(file, public_id: file.original_filename, secure: true)
-        c = current_user.charts.create(chart_params)
-        c.update(url: cloud_image['secure_url'])
-        render json: {message: "chart uploaded"}
-      rescue => e
-        render json: { errors: e }, status: 422
+        current_user.charts.create(url: cloud_image['secure_url'], name: name, artist: artist, genre: genre, group: group)
+      rescue => exception
+        render json: {errors: e}, status: 422
       end
     end
   end
@@ -37,7 +39,7 @@ class Api::ChartsController < ApplicationController
 
   private
     def chart_params
-      params.require(:chart).permit(:name, :artist, :genre, :group, :url, :file)
+      params.require(:chart).permit(:name, :artist, :genre, :group, :url)
     end
 
     def set_chart
