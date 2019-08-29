@@ -32,12 +32,13 @@ class AddCharts extends React.Component {
     data.append("artist", formValues.artist);
     data.append("genre", formValues.genre);
     data.append("group", formValues.group);
-    axios.post("/api/charts", data).then(res =>
-      this.setState({
-        formValues: { name: "", artist: "", genre: "", group: "", file: "" },
-        buttonVisible: false
-      })
-    );
+    axios
+      .post("/api/charts", data)
+      .then(res => this.props.updateCharts(res.data));
+    this.setState({
+      formValues: { name: "", artist: "", genre: "", group: "", file: "" },
+      buttonVisible: false
+    });
   };
   render() {
     const {
