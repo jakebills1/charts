@@ -5,5 +5,6 @@ Rails.application.routes.draw do
     resources :charts do 
       resources :playlists
     end
+    get '/search', to: 'charts#search'
   end
 end

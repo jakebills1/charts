@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Charts from "./Charts";
 import AddCharts from "./AddCharts";
+import Search from "./Search";
 import axios from "axios";
 const Home = () => {
   const [charts, setCharts] = useState([]);
@@ -17,7 +18,8 @@ const Home = () => {
     <div>
       <h1>Home</h1>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <Charts charts={charts} />
+        <Search charts={charts} />
+        {/* <Charts charts={charts} /> */}
         <AddCharts updateCharts={updateCharts} />
       </div>
     </div>

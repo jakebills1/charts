@@ -48,24 +48,31 @@ class AddCharts extends React.Component {
     return (
       <div style={{ display: "flex", flexDirection: "column" }}>
         <form onSubmit={this.handleSubmit}>
-          <Dropzone
-            onDrop={this.onDrop}
-            multiple={false}
-            style={{ width: "300px", height: "300px", backgroundColor: "grey" }}
-          >
-            {({ getRootProps, getInputProps, isDragActive }) => {
-              return (
-                <div {...getRootProps()}>
-                  <input {...getInputProps()} />
-                  {isDragActive ? (
-                    <p>Drop file here</p>
-                  ) : (
-                    <p>Drag your file here to upload</p>
-                  )}
-                </div>
-              );
+          <div
+            style={{
+              width: "300px",
+              height: "300px",
+              backgroundColor: "grey",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center"
             }}
-          </Dropzone>
+          >
+            <Dropzone onDrop={this.onDrop} multiple={false}>
+              {({ getRootProps, getInputProps, isDragActive }) => {
+                return (
+                  <div {...getRootProps()}>
+                    <input {...getInputProps()} />
+                    {isDragActive ? (
+                      <p>Drop file here</p>
+                    ) : (
+                      <p>Drag your file here to upload</p>
+                    )}
+                  </div>
+                );
+              }}
+            </Dropzone>
+          </div>
           <input
             placeholder="name"
             type="text"

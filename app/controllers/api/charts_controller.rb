@@ -35,7 +35,9 @@ class Api::ChartsController < ApplicationController
   end 
 
   def search 
-    require 'pry';binding.pry
+    search_term = params[:search_term]
+    search_type = params[:search_type]
+    render json: current_user.charts.where(["? ilike ?", search_type, search_term])
   end
 
   private
