@@ -12,8 +12,10 @@ const Home = () => {
   return (
     <div>
       <h1>Home</h1>
-      <Charts charts={charts} />
-      <AddCharts />
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <Charts charts={charts} />
+        <AddCharts />
+      </div>
     </div>
   );
 };

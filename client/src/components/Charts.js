@@ -15,7 +15,7 @@ const Charts = ({ charts }) => {
   };
   const indexOfCharts =
     charts.length > 0 ? (
-      <>
+      <div style={{ display: "flex", flexDirection: "column" }}>
         <h3>Your Charts</h3>
         {charts.map(chart => {
           const url = chart.url;
@@ -34,7 +34,7 @@ const Charts = ({ charts }) => {
             </div>
           );
         })}
-      </>
+      </div>
     ) : (
       <>
         <h2>You have no charts currently uploaded</h2>
