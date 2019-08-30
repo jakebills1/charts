@@ -37,7 +37,17 @@ class Api::ChartsController < ApplicationController
   def search 
     search_term = params[:search_term]
     search_type = params[:search_type]
-    render json: current_user.charts.where(["? ilike ?", search_type, search_term])
+    results = case search_type
+      when "name"
+        current_user.charts.where(["name ilike (?)", "%#{search_term}%"])
+      when "artist"
+        current_user.charts.where(["artist ilike (?)", "%#{search_term}%"])
+      when "group"
+        current_user.charts.where(["group AS chartGroup ilike (?)", "%#{search_term}%"])
+      when "genre"
+        current_user.charts.where(["genre ilike (?)", "%#{search_term}%"])
+    end
+    render json: results
   end
 
   private
