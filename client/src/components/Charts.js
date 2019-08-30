@@ -8,7 +8,7 @@ const Charts = ({ charts }) => {
         artist: string,
         url: string,
         genre: string,
-        group: string,
+        group_name: string,
         playlist_id: number
       })
     )
@@ -16,7 +16,7 @@ const Charts = ({ charts }) => {
   const indexOfCharts =
     charts.length > 0 ? (
       <div style={{ display: "flex", flexDirection: "column" }}>
-        <h3>Your Charts</h3>
+        <h3>Search Results:</h3>
         {charts.map(chart => {
           const url = chart.url;
           return (
@@ -25,7 +25,7 @@ const Charts = ({ charts }) => {
                 {chart.name} - {chart.artist}
               </p>
               <p>{chart.genre}</p>
-              <p>{chart.group}</p>
+              <p>{chart.group_name}</p>
               <iframe
                 src={url}
                 style={{ display: "block", border: "0", overflow: "hidden" }}
@@ -37,7 +37,7 @@ const Charts = ({ charts }) => {
       </div>
     ) : (
       <>
-        <h2>You have no charts currently uploaded</h2>
+        <h2>No Results Found</h2>
       </>
     );
   return indexOfCharts;
