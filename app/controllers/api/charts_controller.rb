@@ -43,7 +43,7 @@ class Api::ChartsController < ApplicationController
       when "artist"
         current_user.charts.where(["artist ilike (?)", "%#{search_term}%"])
       when "group"
-        current_user.charts.where(["group AS chartGroup ilike (?)", "%#{search_term}%"])
+        current_user.charts.where(["group_name ilike (?)", "%#{search_term}%"])
       when "genre"
         current_user.charts.where(["genre ilike (?)", "%#{search_term}%"])
     end
