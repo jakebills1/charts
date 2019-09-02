@@ -24,6 +24,8 @@ const Home = () => {
       >
         <Search charts={charts} />
         {/* <Charts charts={charts} /> */}
+        <br />
+        <br />
         <AddCharts updateCharts={updateCharts} />
       </div>
     </div>
