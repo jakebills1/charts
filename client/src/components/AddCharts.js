@@ -3,8 +3,16 @@ import Dropzone from "react-dropzone";
 import axios from "axios";
 class AddCharts extends React.Component {
   state = {
-    formValues: { name: "", artist: "", genre: "", group: "", file: "" },
-    buttonVisible: false
+    formValues: {
+      name: "",
+      artist: "",
+      genre: "",
+      group: "",
+      file: "",
+      playlist: ""
+    },
+    buttonVisible: false,
+    newPlaylist: false
   };
   onDrop = files => {
     var indexOfHyphen = files[0].name.indexOf("-");
@@ -32,18 +40,27 @@ class AddCharts extends React.Component {
     data.append("artist", formValues.artist);
     data.append("genre", formValues.genre);
     data.append("group", formValues.group);
+    data.append("playlist", formValues.playlist);
     axios
       .post("/api/charts", data)
       .then(res => this.props.updateCharts(res.data));
     this.setState({
-      formValues: { name: "", artist: "", genre: "", group: "", file: "" },
+      formValues: {
+        name: "",
+        artist: "",
+        genre: "",
+        group: "",
+        file: "",
+        playlist: ""
+      },
       buttonVisible: false
     });
   };
   render() {
     const {
-      formValues: { name, artist, group, genre },
-      buttonVisible
+      formValues: { name, artist, group, genre, playlist },
+      buttonVisible,
+      newPlaylist
     } = this.state;
     return (
       <div style={{ display: "flex", flexDirection: "column" }}>
@@ -113,6 +130,44 @@ class AddCharts extends React.Component {
               })
             }
           />
+          <label htmlFor="playlist_select">Add to a Playlist:</label>
+          <select
+            name="playlist"
+            id="playlist_select"
+            value={playlist}
+            onChange={e =>
+              this.setState({
+                formValues: {
+                  ...this.state.formValues,
+                  playlist: e.target.value
+                },
+                newPlaylist: e.target.value === "new_playlist" ? true : false
+              })
+            }
+          >
+            <option value="new_playlist">New Playlist</option>
+            {this.props.playlists.map(pl => (
+              <option value={pl.name}>{pl.name}</option>
+            ))}
+          </select>
+          {newPlaylist && (
+            <>
+              <label htmlFor="new_playlist_input">New Playlist Name:</label>
+              <input
+                id="new_playlist_input"
+                placeholder="Playlist name"
+                value={playlist}
+                onChange={e =>
+                  this.setState({
+                    formValues: {
+                      ...this.state.formValues,
+                      playlist: e.target.value
+                    }
+                  })
+                }
+              />
+            </>
+          )}
           {buttonVisible && <button type="submit">Submit</button>}
         </form>
       </div>

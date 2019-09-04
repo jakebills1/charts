@@ -3,7 +3,7 @@ import axios from "axios";
 import Charts from "./Charts";
 class Search extends React.Component {
   state = {
-    search_term: "",
+    search_term: [],
     search_type: "name",
     search_results: [],
     resultsVisible: false

@@ -20,7 +20,8 @@ const Charts = ({ charts }) => {
   const onDocumentLoadSuccess = ({ numPages }) => {
     setNumPages(numPages);
   };
-  const nextPage = () => {
+  const nextPage = e => {
+    e.preventDefault();
     if (pageNumber < numPages) {
       setPageNumber(pageNumber + 1);
     } else {
