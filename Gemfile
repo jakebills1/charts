@@ -3,11 +3,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
-gem 'rails', '~> 5.2.3'
+gem 'rails', '= 6.0.0'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 gem 'bootsnap', '>= 1.1.0', require: false
-gem "devise_token_auth", "~> 1.0.0"
+gem "devise_token_auth"
 gem 'cloudinary'
 # devise_token_auth mysteriously does not work with latest version
 group :development, :test do
