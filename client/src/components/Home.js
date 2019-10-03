@@ -3,6 +3,7 @@ import AddCharts from "./AddCharts";
 import Search from "./Search";
 import axios from "axios";
 import Playlists from "./Playlists";
+import Charts from "./Charts";
 const Home = () => {
   const [charts, setCharts] = useState([]);
   const [playlists, setPlaylists] = useState([]);
@@ -29,7 +30,7 @@ const Home = () => {
       >
         <Playlists playlists={playlists} />
         <Search charts={charts} />
-        {/* <Charts charts={charts} /> */}
+        <Charts charts={charts} />
         <br />
         <br />
         <AddCharts updateCharts={updateCharts} playlists={playlists} />

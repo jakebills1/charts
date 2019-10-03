@@ -145,6 +145,9 @@ class AddCharts extends React.Component {
               })
             }
           >
+            <option value="" disabled selected>
+              Pick an option:
+            </option>
             <option value="new_playlist">New Playlist</option>
             {this.props.playlists.map(pl => (
               <option value={pl.name}>{pl.name}</option>

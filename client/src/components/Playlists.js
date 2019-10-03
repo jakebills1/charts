@@ -1,7 +1,11 @@
 import React from "react";
-class Playlists extends React.Component {
-  render() {
-    return <h2>Your Playlists</h2>;
-  }
-}
+const Playlists = ({ playlists }) => {
+  return (
+    <ul>
+      {playlists.map(pl => (
+        <li>{pl.name}</li>
+      ))}
+    </ul>
+  );
+};
 export default Playlists;
