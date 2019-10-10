@@ -5,7 +5,6 @@ class Api::ChartsController < ApplicationController
   end
 
   def create 
-    require 'pry';binding.pry
     file = params[:file]
     name = params[:name]
     artist = params[:artist]
@@ -19,7 +18,7 @@ class Api::ChartsController < ApplicationController
       begin
         ext = File.extname(file.tempfile)
         cloud_image = Cloudinary::Uploader.upload(file, public_id: file.original_filename, secure: true)
-        current_user.charts.create(url: cloud_image['secure_url'], name: name, artist: artist, genre: genre, group_name: group, playlist_id: playlist.id)
+        current_user.charts.create(url: cloud_image['secure_url'], name: name, artist: artist, genre: genre, group_name: group, playlist_id: playlist.ids[0])
         render json: current_user.charts.last
       rescue => exception
         render json: {errors: exception}, status: 422

@@ -12,6 +12,7 @@ gem 'cloudinary'
 # devise_token_auth mysteriously does not work with latest version
 group :development, :test do
   gem 'faker'
+  gem 'byebug'
   gem 'pry'
   gem 'dotenv-rails'
 end

@@ -22,7 +22,7 @@ const charts = (state = [], action) => {
     case actionTypes.charts:
       return action.charts;
     case actionTypes.addCharts:
-      return [action.chart, ...state];
+      return [...state, action.chart];
     default:
       return state;
   }
