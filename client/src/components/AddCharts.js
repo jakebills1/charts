@@ -1,6 +1,7 @@
 import React from "react";
 import Dropzone from "react-dropzone";
-import axios from "axios";
+import { addChart } from "../reducers/charts";
+import { connect } from "react-redux";
 class AddCharts extends React.Component {
   state = {
     formValues: {
@@ -41,9 +42,7 @@ class AddCharts extends React.Component {
     data.append("genre", formValues.genre);
     data.append("group", formValues.group);
     data.append("playlist", formValues.playlist);
-    axios
-      .post("/api/charts", data)
-      .then(res => this.props.updateCharts(res.data));
+    this.props.dispatch(addChart(data));
     this.setState({
       formValues: {
         name: "",
@@ -177,4 +176,4 @@ class AddCharts extends React.Component {
     );
   }
 }
-export default AddCharts;
+export default connect()(AddCharts);

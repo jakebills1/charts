@@ -6,6 +6,13 @@ export const getCharts = () => {
       .then(res => dispatch({ type: actionTypes.charts, charts: res.data }));
   };
 };
+export const addChart = chart => {
+  return dispatch => {
+    axios
+      .post("/api/charts", chart)
+      .then(res => dispatch({ type: actionTypes.addCharts, chart: res.data }));
+  };
+};
 const actionTypes = {
   charts: "CHARTS",
   addCharts: "ADD_CHART"

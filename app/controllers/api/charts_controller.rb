@@ -5,6 +5,7 @@ class Api::ChartsController < ApplicationController
   end
 
   def create 
+    require 'pry';binding.pry
     file = params[:file]
     name = params[:name]
     artist = params[:artist]

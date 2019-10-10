@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import AddCharts from "./AddCharts";
 import Search from "./Search";
-import axios from "axios";
 import Playlists from "./Playlists";
 import Charts from "./Charts";
 import { connect } from "react-redux";
@@ -12,9 +11,6 @@ class Home extends React.Component {
     this.props.dispatch(getCharts());
     this.props.dispatch(getPlaylists());
   }
-  // const updateCharts = chart => {
-  //   setCharts([...charts, chart]);
-  // };
   render() {
     const { charts, playlists } = this.props;
     return (
@@ -32,7 +28,7 @@ class Home extends React.Component {
           <Charts charts={charts} />
           <br />
           <br />
-          {/* <AddCharts updateCharts={updateCharts} playlists={playlists} /> */}
+          <AddCharts playlists={playlists} />
         </div>
       </div>
     );
