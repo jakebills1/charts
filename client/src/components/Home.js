@@ -8,8 +8,8 @@ import { getCharts } from "../reducers/charts";
 import { getPlaylists } from "../reducers/playlists";
 class Home extends React.Component {
   componentDidMount() {
-    this.props.dispatch(getCharts());
-    this.props.dispatch(getPlaylists());
+    this.props.getCharts();
+    this.props.getPlaylists();
   }
   render() {
     const { charts, playlists } = this.props;
@@ -37,4 +37,8 @@ class Home extends React.Component {
 const mapStateToProps = state => {
   return { charts: state.charts, playlists: state.playlists };
 };
-export default connect(mapStateToProps)(Home);
+const actions = { getCharts, getPlaylists };
+export default connect(
+  mapStateToProps,
+  actions
+)(Home);
