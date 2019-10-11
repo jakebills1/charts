@@ -35,7 +35,6 @@ class Api::ChartsController < ApplicationController
   end
 
   def destroy
-    require 'pry';binding.pry
     result = Cloudinary::Uploader.destroy(@chart.cloudinary_id, options = {})
     @chart.destroy
     render json: { message: "Chart deleted"}
