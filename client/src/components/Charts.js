@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { arrayOf, shape, string, number } from "prop-types";
 import { Document, Page, pdfjs } from "react-pdf";
+import { deleteChart } from "../reducers/charts";
+import { connect } from "react-redux";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
-const Charts = ({ charts }) => {
+const Charts = ({ charts, dispatch }) => {
   Charts.propTypes = {
     charts: arrayOf(
       shape({
@@ -28,6 +30,9 @@ const Charts = ({ charts }) => {
       setPageNumber(1);
     }
   };
+  const handleDelete = id => {
+    dispatch(deleteChart(id));
+  };
   const indexOfCharts =
     charts.length > 0 ? (
       <div style={{ display: "flex", flexDirection: "column" }}>
@@ -52,6 +57,9 @@ const Charts = ({ charts }) => {
                 <p>
                   Page {pageNumber} of {numPages}
                 </p>
+                <button onClick={() => handleDelete(chart.id)}>
+                  Delete Chart
+                </button>
               </div>
             </div>
           );
@@ -64,4 +72,5 @@ const Charts = ({ charts }) => {
     );
   return indexOfCharts;
 };
-export default Charts;
+
+export default connect()(Charts);

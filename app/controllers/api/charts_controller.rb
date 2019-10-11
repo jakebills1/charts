@@ -18,7 +18,7 @@ class Api::ChartsController < ApplicationController
       begin
         ext = File.extname(file.tempfile)
         cloud_image = Cloudinary::Uploader.upload(file, public_id: file.original_filename, secure: true)
-        current_user.charts.create(url: cloud_image['secure_url'], name: name, artist: artist, genre: genre, group_name: group, playlist_id: playlist.ids[0])
+        current_user.charts.create(url: cloud_image['secure_url'], name: name, artist: artist, genre: genre, group_name: group, playlist_id: playlist.ids[0], cloudinary_id: cloud_image["public_id"])
         render json: current_user.charts.last
       rescue => exception
         render json: {errors: exception}, status: 422
@@ -34,8 +34,11 @@ class Api::ChartsController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
+    require 'pry';binding.pry
+    result = Cloudinary::Uploader.destroy(@chart.cloudinary_id, options = {})
     @chart.destroy
+    render json: { message: "Chart deleted"}
   end 
 
   def search 
@@ -56,7 +59,7 @@ class Api::ChartsController < ApplicationController
 
   private
     def chart_params
-      params.require(:chart).permit(:name, :artist, :genre, :group, :url, :playlist)
+      params.require(:chart).permit(:name, :artist, :genre, :group, :url, :playlist, :cloudinary_id)
     end
 
     def set_chart
