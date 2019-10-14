@@ -1,6 +1,6 @@
 import React from "react";
 import Dropzone from "react-dropzone";
-import { addChart } from "../reducers/charts";
+import { addChart } from "../actions";
 import { connect } from "react-redux";
 class AddCharts extends React.Component {
   state = {

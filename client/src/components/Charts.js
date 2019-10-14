@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { arrayOf, shape, string, number } from "prop-types";
 import { Document, Page, pdfjs } from "react-pdf";
-import { deleteChart } from "../reducers/charts";
+import { deleteChart } from "../actions";
 import { connect } from "react-redux";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 const Charts = ({ charts, dispatch }) => {

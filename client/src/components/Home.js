@@ -4,8 +4,8 @@ import Search from "./Search";
 import Playlists from "./Playlists";
 import Charts from "./Charts";
 import { connect } from "react-redux";
-import { getCharts } from "../reducers/charts";
-import { getPlaylists } from "../reducers/playlists";
+import { getCharts } from "../actions";
+import { getPlaylists } from "../actions";
 class Home extends React.Component {
   componentDidMount() {
     this.props.getCharts();
