@@ -1,15 +1,14 @@
 import React from "react";
 import axios from "axios";
+import { connect } from "react-redux";
 const AuthContext = React.createContext();
 export const AuthConsumer = AuthContext.Consumer;
-export class AuthProvider extends React.Component {
-  state = { user: null };
-
+class AuthProvider extends React.Component {
   handleRegister = (user, history) => {
     axios
       .post("/api/auth", user)
       .then(res => {
-        this.setState({ user: res.data.data });
+        this.props.setUser(res.data.data);
         history.push("/");
       })
       .catch(res => {
@@ -22,7 +21,7 @@ export class AuthProvider extends React.Component {
     axios
       .post("/api/auth/sign_in", user)
       .then(res => {
-        this.setState({ user: res.data.data });
+        this.props.setUser(res.data.data);
         history.push("/");
       })
       .catch(res => {
@@ -35,7 +34,7 @@ export class AuthProvider extends React.Component {
     axios
       .delete("/api/auth/sign_out")
       .then(res => {
-        this.setState({ user: null });
+        this.props.setUser(null);
         history.push("/login");
       })
       .catch(res => {
@@ -49,11 +48,11 @@ export class AuthProvider extends React.Component {
       <AuthContext.Provider
         value={{
           ...this.state,
-          authenticated: this.state.user !== null,
+          authenticated: this.props.user !== null,
           handleRegister: this.handleRegister,
           handleLogin: this.handleLogin,
           handleLogout: this.handleLogout,
-          setUser: user => this.setState({ user })
+          setUser: user => this.props.setUser(user)
         }}
       >
         {this.props.children}
@@ -61,3 +60,13 @@ export class AuthProvider extends React.Component {
     );
   }
 }
+const mapStateToProps = state => {
+  return { user: state.user };
+};
+const mapDispatchToProps = dispatch => {
+  return { setUser: user => dispatch({ type: "SET_USER", user }) };
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AuthProvider);

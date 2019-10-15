@@ -58,5 +58,6 @@ export const actionTypes = {
   playlists: "PLAYLISTS",
   login: "USER_LOGIN",
   logout: "USER_LOGOUT",
-  register: "USER_REGISTER"
+  register: "USER_REGISTER",
+  setUser: "SET_USER"
 };

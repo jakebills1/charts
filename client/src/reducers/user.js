@@ -4,6 +4,7 @@ const user = (state = null, action) => {
     case actionTypes.login:
     case actionTypes.register:
     case actionTypes.logout:
+    case actionTypes.setUser:
       return action.user;
     default:
       return state;
